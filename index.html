@@ -8,14 +8,18 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Microsoft YaHei', sans-serif;
-            background: #f5f7fa; /* 改为实色背景 */
+            background: #f5f7fa;
+            scroll-behavior: smooth; /* 原生平滑滚动 */
         }
 
-        /* 导航栏 - 最简化 */
+        /* 导航栏 */
         nav {
             background: #ffffff;
             padding: 1rem 2rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         .nav-container {
             max-width: 1200px;
@@ -25,12 +29,24 @@
             align-items: center;
         }
         .logo { color: #667eea; font-size: 1.5rem; font-weight: bold; }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { text-decoration: none; color: #333; }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .nav-links a:hover { background: #f0f0f0; }
 
-        /* 横幅区域 - 用边框代替渐变 */
+        /* 首页横幅 */
         .hero-wrapper {
-            background: #667eea; /* 实色背景 */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 4rem 0;
         }
         .hero {
@@ -58,31 +74,30 @@
             margin: 0 auto;
             padding: 3rem 2rem;
         }
-        .plans-header { text-align: center; font-size: 2rem; margin-bottom: 2rem; }
+        .plans-header { text-align: center; font-size: 2rem; margin-bottom: 3rem; }
 
         .plans-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
-
         .plan-card {
             background: #ffffff;
             border: 2px solid #e0e0e0;
             border-radius: 15px;
             padding: 2rem;
             text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
         .plan-card.featured {
             border-color: #667eea;
             background: #f0f4ff;
+            transform: scale(1.05);
         }
-
         .plan-name { font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem; }
         .plan-price { font-size: 2.5rem; color: #667eea; margin: 1rem 0; }
         .plan-features { list-style: none; margin: 2rem 0; }
         .plan-features li { padding: 0.5rem 0; border-bottom: 1px solid #eee; }
-
         .plan-button {
             display: inline-block;
             background: #667eea;
@@ -91,6 +106,25 @@
             border-radius: 25px;
             text-decoration: none;
             font-weight: bold;
+        }
+        .plan-card.featured .plan-button {
+            background: #667eea;
+            color: white;
+        }
+
+        /* 联系我们区域 */
+        .contact-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .contact-section h2 { font-size: 2rem; margin-bottom: 2rem; }
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
 
         /* 页脚 */
@@ -107,7 +141,7 @@
     <!-- 导航栏 -->
     <nav>
         <div class="nav-container">
-            <div class="logo">🚀 极速WiFi</div>
+            <div class="logo">🚀 StnWiFi</div>
             <ul class="nav-links">
                 <li><a href="#home">首页</a></li>
                 <li><a href="#plans">WiFi套餐</a></li>
@@ -116,47 +150,20 @@
         </div>
     </nav>
 
-    <!-- 横幅 -->
-    <div class="hero-wrapper">
-        <section id="home" class="hero">
+    <!-- 首页 -->
+    <section id="home" class="hero-wrapper">
+        <div class="hero">
             <h1>畅享极速网络世界</h1>
             <p>稳定、快速、安全的WiFi解决方案</p>
             <a href="#plans" class="cta-button">查看套餐</a>
-        </section>
-    </div>
+        </div>
+    </section>
 
-    <!-- 套餐 -->
+    <!-- WiFi套餐 -->
     <section id="plans" class="plans-section">
         <h2 class="plans-header">📶 WiFi套餐选择</h2>
         <div class="plans-grid">
             <div class="plan-card">
                 <div class="plan-name">🥉 基础版</div>
-                <div class="plan-price">¥49<span>/月</span></div>
-                <ul class="plan-features">
-                    <li>⚡ 100Mbps 宽带</li>
-                    <li>📱 支持3台设备</li>
-                    <li>🛡️ 基础安全防护</li>
-                </ul>
-                <a href="#" class="plan-button">立即办理</a>
-            </div>
-
-            <div class="plan-card featured">
-                <div class="plan-name">🥈 标准版</div>
-                <div class="plan-price">¥89<span>/月</span></div>
-                <ul class="plan-features">
-                    <li>⚡ 300Mbps 高速宽带</li>
-                    <li>📱 支持8台设备</li>
-                    <li>🛡️ 高级安全防护</li>
-                </ul>
-                <a href="#" class="plan-button">立即办理</a>
-            </div>
-
-            <div class="plan-card">
-                <div class="plan-name">🥇 旗舰版</div>
-                <div class="plan-price">¥149<span>/月</span></div>
-                <ul class="plan-features">
-                    <li>⚡ 1000Mbps 光纤宽带</li>
-                    <li>📱 不限设备数量</li>
-                    <li>🛡️ 企业级安全</li>
-                </ul>
-             
+                <div class="plan-price">¥9.9<span>/月</span></div>
+                <ul cl
